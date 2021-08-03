@@ -1,1 +1,1 @@
-web: gunicorn walDox.wsgi
+web: gunicorn wallsDox.wsgi
