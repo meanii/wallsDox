@@ -2,6 +2,16 @@
 
 {% block content  %}
 
+{% if error %}
+<h1 class="mt-3 h-text">
+  ERROR 404 - nothing found!
+</h1>
+  
+{% else %}
+<h1 class="mt-3 h-text">
+  r/{{searched}}
+</h1>
+    
   <div class="container">
     <div class="row mt-5 justify-content-center">
       {% for image in reddit %}
@@ -20,4 +30,5 @@
     </div>
   </div>
   
+{% endif %}
 {% endblock  %}
