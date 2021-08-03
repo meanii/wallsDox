@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+<div class="container">
+    <div class="row mt-5 justify-content-center">
+      {% for image in reddit %}
+      <div class="col-md-4 d-flex mb-3 me-auto">
+        <div class="d-flex flex-column bd-highlight mb-3 rounded-3" style="background-color: #171B30;">
+          <div class="p-2">
+            <img src="{{image}}" class="img-fluid mb-1 rounded-3" alt="wall">
+          </div>
+          <div class="p-2">
+            <button type="button" class="download-button btn"><i class="bi bi-download"></i></button>
+            <button type="button" class="download-button btn"><i class="bi bi-share"></i></button>
+          </div>
+        </div>
+      </div>
+      {% endfor  %}
+    </div>
+  </div>
+{% endblock  %}

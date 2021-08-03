@@ -19,6 +19,6 @@ from walls import views
 
 urlpatterns = [
     path('results/', views.result_views),
-    path('', views.search_view),
+    path('', views.home_view),
     path('admin/', admin.site.urls),
 ]
