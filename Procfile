@@ -1,1 +1,1 @@
-web: gunicorn meanii.wsgi
+web: gunicorn walDox.wsgi
