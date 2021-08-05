@@ -54,7 +54,7 @@
             <span class="fas fa-times"></span>
          </div>
          <form action="/results/" mothod="post"> {% csrf_token %}
-            <input type="search" class="search-data" name="search" placeholder="Search free high-resolution photos" aria-label="Search" required>
+            <input type="search" class="search-data border" style="z-index: 1;" name="search" placeholder="Search free high-resolution photos" aria-label="Search" required>
             <button type="text" name="search" formmethod="post" class="fas fa-search"></button>
          </form>
       </nav>

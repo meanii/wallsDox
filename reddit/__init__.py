@@ -29,8 +29,7 @@ def getReddit(search: str, limit: int = 30) -> list:
   response = requests.get(url, headers={'User-agent': ua.random})
   if not response.ok:
     print("Error check the name of the subreddit", response.status_code)
-  print(response.json())
-  print(url)
+
   data = response.json()['data']['children']
   image_list = get_pictures_from_subreddit(data, search)
   return image_list

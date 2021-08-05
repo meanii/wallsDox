@@ -2,10 +2,50 @@
 
 {% block content  %}
 
-  <h1 class="mt-3" style="color: white; text-align: center;">
-  Search your subreddits r/wallpaper
-  <h1>
+<div class="card w-75 mt-5 mx-auto bg-dark">
+  <div class="card-body">
+    <h5 class="card-title text-white">Upload your images</h5>
+    <p class="card-text text-white">Images supporting text below as a natural lead-in to additional contents like tags.</p>
+    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      upload a photo
+    </button>
+  </div>
+</div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-dark">
+        <h5 class="modal-title text-white" id="exampleModalLabel">upload your images</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bg-dark text-white">
+        images supporting text below as a natural lead-in to additional contents like tags.
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+            {{ form.title }}
+            {{  form.image }}
+      </div>
+      <div class="modal-footer bg-dark text-white">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" formmethod="post" class="btn btn-primary">Upload</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--
+{% if img_obj %}
+  <h3>Succesfully uploaded : {{img_obj.title}}</h3>
+  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
+{% endif %}
+-->
+
+<!--
 <div class="container">
     <div class="row mt-5 justify-content-center">
       {% for image in reddit %}
@@ -23,4 +63,6 @@
       {% endfor  %}
     </div>
   </div>
+  -->
+  
 {% endblock  %}
