@@ -31,7 +31,7 @@ def result_views(request, *args, **kwargs):
   return render(request, 'results.html', content)
 
 def home_view(request, *args, **kwargs):
-  print(request)
+  """print(request)
   if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
@@ -41,4 +41,18 @@ def home_view(request, *args, **kwargs):
             return render(request, 'home.html', {'form': form, 'img_obj': img_obj})
   else:
       form = ImageForm()
-  return render(request, 'home.html', {'form': form})
+      """
+  img_list = getReddit('wallpaper', limit=10)
+  tags_list = [
+    'r/wallpapers',
+    'r/anime',
+    'google pixle',
+    'android 12',
+    'stock walls',
+    'oxgen os walls'
+    ]
+  context = {
+    'wallpapers': img_list,
+    'tags': tags_list
+  }
+  return render(request, 'home.html', context)

@@ -2,67 +2,105 @@
 
 {% block content  %}
 
-<div class="card w-75 mt-5 mx-auto bg-dark">
-  <div class="card-body">
-    <h5 class="card-title text-white">Upload your images</h5>
-    <p class="card-text text-white">Images supporting text below as a natural lead-in to additional contents like tags.</p>
-    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      upload a photo
-    </button>
-  </div>
-</div>
+{% load static %}
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-dark">
-        <h5 class="modal-title text-white" id="exampleModalLabel">upload your images</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body bg-dark text-white">
-        images supporting text below as a natural lead-in to additional contents like tags.
-        <form method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-            {{ form.title }}
-            {{  form.image }}
-      </div>
-      <div class="modal-footer bg-dark text-white">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" formmethod="post" class="btn btn-primary">Upload</button>
-        </form>
-        
-      </div>
-    </div>
-  </div>
-</div>
+<section id="home" class="d-flex align-items-center">
 
-
-<!--
-{% if img_obj %}
-  <h3>Succesfully uploaded : {{img_obj.title}}</h3>
-  <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
-{% endif %}
--->
-
-<!--
-<div class="container">
-    <div class="row mt-5 justify-content-center">
-      {% for image in reddit %}
-      <div class="col-md-4 d-flex mb-3 me-auto">
-        <div class="d-flex flex-column bd-highlight mb-3 rounded-3" style="background-color: #171B30;">
-          <div class="p-2">
-            <img src="{{image}}" class="img-fluid mb-1 rounded-3" alt="wall">
-          </div>
-          <div class="p-2">
-            <button type="button" class="download-button btn"><i class="bi bi-download"></i></button>
-            <button type="button" class="download-button btn"><i class="bi bi-share"></i></button>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-5 pt-lg-0 order-2 mt-5 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>wallsDox</h1>
+          <h2>share your quality wallpapers and get quality wallpapers of others.</h2>
+          <div class="d-flex">
+            <a href="#about" class="btn-get-started scrollto">upload</a>
           </div>
         </div>
+        <div class="col-lg-6 order-1 order-lg-2 home-img">
+           <img src="{% static 'assets/img/logo.png' %}" class="img-fluid animated" alt="">
+        </div>
       </div>
-      {% endfor  %}
     </div>
-  </div>
-  -->
-  
+
+  </section>
+
+  <main id="main">
+    
+        
+    <section id="search">
+      <div class="container">
+        <div class="search-x">
+          
+          <div class="row justify-content-center">
+              <div class="col-lg-6">
+                <h3>wallsDox search</h3>
+                <p>search and get dope wallpapers</p>
+              </div>
+            </div>
+    
+            <div class="row search-bar justify-content-center">
+              <div class="col-lg-6">
+                <form action="" method="post">
+                  <input type="search" name="search" placeholder="Search your quality wallpapers"><input type="submit" value="search">
+                </form>
+              </div>
+            </div>
+          
+          </div>
+      </div>
+    </section>
+    
+    <section id="wallpapers" class="wallpapers">
+      <div class="container">
+        
+        <div class="row wallpapers-container">
+            {% for wallpaper in wallpapers %}
+               <div class="col-lg-4 mb-4 col-md-6">
+                 <img src="{{wallpaper}}" class="img-fluid" alt="">
+                </div>
+            {% endfor  %}
+      </div>
+      
+    </section>
+
+    <section id="categories" class="categories section-bg">
+      <div class="container">
+        <div class="d-flex align-content-center flex-wrap">
+          {%  for tag in tags %}
+          <div class="badge m-2 text-wrap align-self-start" style="width: 6rem; background-color: #16E07D;">
+            {{tag}}
+          </div>
+          {% endfor  %}
+          
+        </div>
+          
+          <!--
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bxl-reddit"></i></div>
+              <h4><a href="">r/wallpapers</a></h4>
+              <p>get your wallpaper from top r/wallpapers sub reddit of this week.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bxl-reddit"></i></div>
+              <h4><a href="">r/anime</a></h4>
+              <p>get your wallpaper from top r/anim sub reddit of this week.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bxl-google"></i></div>
+              <h4><a href="">Google Pixle</a></h4>
+              <p>get stock google pixle wallpapers.</p>
+            </div>
+          </div>
+        </div>
+          -->
+          
+      </div>
+    </section>
+
 {% endblock  %}
