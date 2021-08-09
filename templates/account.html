@@ -1,0 +1,86 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>wallsDox</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+
+  <link href="{% static 'assets/css/login.css' %}" rel="stylesheet">
+
+</head>
+<body>
+  <section>
+      <div class="container">
+        
+        <div class="user signinBx">
+          <div class="imgBx"><img src="{% static 'assets/img/login.png' %}" alt="" /></div>
+          <div class="formBx">
+            <form action="/accounts/" method="post">
+              {% csrf_token  %}
+              
+              <h2>Sign In</h2>
+              <input type="text" name="username" placeholder="Username" />
+              <input type="password" name="password" placeholder="Password" />
+              <input type="submit" name="submit" formmethod="post" value="Login" />
+              <p class="signup">
+                Don't have an account ?
+                <a href="#" onclick="toggleForm();">Sign Up.</a>
+              </p>
+            </form>
+          </div>
+        </div>
+        <div class="user signupBx">
+          <div class="formBx">
+            <form action="/accounts/" method="post"> 
+                {% csrf_token  %}
+                
+              <h2>Create an account</h2>
+              <input type="text" name="first_name" placeholder="First name" />
+              <input type="text" name="username" placeholder="Username" />
+              <input type="email" name="email" placeholder="Email Address" />
+              <input type="password" name="password" placeholder="Create Password" />
+              <input type="password" name="cpassword" placeholder="Confirm Password" />
+              <input type="submit" name="submit" formmethod="post" value="Sign Up" />
+              <p class="signup">
+                Already have an account ?
+                <a href="#" onclick="toggleForm();">Sign in.</a>
+              </p>
+            </form>
+          </div>
+          <div class="imgBx"><img src="{% static 'assets/img/signup.png' %}" alt="" /></div>
+        </div>
+        {% for message in messages %}
+          <div class="alert mt-3 alert-warning alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+         {% endfor %}
+      </div>
+      </div>
+  </section>
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+<script>
+const toggleForm = () => {
+  const container = document.querySelector('.container');
+  container.classList.toggle('active');
+};
+</script>

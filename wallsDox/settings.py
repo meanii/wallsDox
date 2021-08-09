@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'walls'
 ]
 
@@ -87,7 +88,8 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse(os.environ.get("DATABASE_URL"), conn_max_age=int(os.environ.get("CONN_MAX_AGE", 600)))
+DATABASES['default'] = dj_database_url.parse(os.environ.get("DATABASE_URL"), conn_max_age=int(os.environ.get("CONN_MAX_AGE", 0)))
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -106,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

@@ -12,7 +12,11 @@
           <h1>wallsDox</h1>
           <h2>share your quality wallpapers and get quality wallpapers of others.</h2>
           <div class="d-flex">
-            <a href="#about" class="btn-get-started scrollto">upload</a>
+            {% if user.is_authenticated %}
+              <a href="#about" class="btn-get-started scrollto">upload</a>
+            {% else %}
+              <a href="/accounts" class="btn-get-started scrollto">sign in</a>
+            {% endif %}
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 home-img">
@@ -51,7 +55,6 @@
     
     <section id="wallpapers" class="wallpapers">
       <div class="container">
-        
         <div class="row wallpapers-container">
             {% for wallpaper in wallpapers %}
                <div class="col-lg-4 mb-4 col-md-6">
@@ -59,7 +62,6 @@
                 </div>
             {% endfor  %}
       </div>
-      
     </section>
 
     <section id="categories" class="categories section-bg">
@@ -70,36 +72,7 @@
             {{tag}}
           </div>
           {% endfor  %}
-          
         </div>
-          
-          <!--
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-reddit"></i></div>
-              <h4><a href="">r/wallpapers</a></h4>
-              <p>get your wallpaper from top r/wallpapers sub reddit of this week.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-reddit"></i></div>
-              <h4><a href="">r/anime</a></h4>
-              <p>get your wallpaper from top r/anim sub reddit of this week.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-google"></i></div>
-              <h4><a href="">Google Pixle</a></h4>
-              <p>get stock google pixle wallpapers.</p>
-            </div>
-          </div>
-        </div>
-          -->
-          
       </div>
     </section>
 
