@@ -49,14 +49,15 @@
             <form action="/accounts/" method="post"> 
                 {% csrf_token  %}
                 
-              <h2>Create an account</h2>
+              <h2 class="mt-5">Create an account</h2>
               <input type="text" name="first_name" placeholder="First name" />
+              <input type="text" name="last_name" placeholder="Last name" />
               <input type="text" name="username" placeholder="Username" />
               <input type="email" name="email" placeholder="Email Address" />
               <input type="password" name="password" placeholder="Create Password" />
               <input type="password" name="cpassword" placeholder="Confirm Password" />
               <input type="submit" name="submit" formmethod="post" value="Sign Up" />
-              <p class="signup">
+              <p class="signup mb-5">
                 Already have an account ?
                 <a href="#" onclick="toggleForm();">Sign in.</a>
               </p>

@@ -43,6 +43,7 @@ def login(request) -> None:
     
 def signup(request) -> None:
   first_name = request.POST['first_name']
+  last_name = request.POST['last_name']
   username = request.POST['username']
   email = request.POST['email']
   password = request.POST['password']
@@ -63,6 +64,7 @@ def signup(request) -> None:
   else:
     user = User.objects.create_user(
     first_name=first_name,
+    last_name=last_name,
     username=username,
     email=email,
     password=password
