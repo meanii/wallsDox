@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qe683pzo097qt-56-b#l4ws28yd0su3gs^2!3$y!y&=vj=y(%('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", False)
 
 ALLOWED_HOSTS = ['*']
 
@@ -36,14 +36,15 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'walls',
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'walls'
+    'django.contrib.sites'
 ]
 
 MIDDLEWARE = [
@@ -81,15 +82,18 @@ WSGI_APPLICATION = 'wallsDox.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+DATABASE_URL = os.environ.get("DATABASE_URL")
+CONN_MAX_AGE = int(os.environ.get("CONN_MAX_AGE", 0))
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-DATABASES['default'] = dj_database_url.parse(os.environ.get("DATABASE_URL"), conn_max_age=int(os.environ.get("CONN_MAX_AGE", 0)))
-
+if DATABASE_URL is not None:
+  DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=CONN_MAX_AGE)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -146,3 +150,10 @@ MEDIA_URL = '/media/'
 
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# Dropbox settings 
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+DROPBOX_OAUTH2_TOKEN = os.environ.get("DROPBOX_OAUTH2_TOKEN")
+DROPBOX_ROOT_PATH = 'uploads/'
+DROPBOX_TIMEOUT = int(os.environ.get("DROPBOX_TIMEOUT", 100))
+DROPBOX_WRITE_MODE = 'add'
