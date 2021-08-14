@@ -10,6 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 from dotenv import load_dotenv
 from pathlib import Path
 import dj_database_url
@@ -38,6 +42,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'walls',
     'accounts',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -151,9 +156,9 @@ MEDIA_URL = '/media/'
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-# Dropbox settings 
-DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-DROPBOX_OAUTH2_TOKEN = os.environ.get("DROPBOX_OAUTH2_TOKEN")
-DROPBOX_ROOT_PATH = 'uploads/'
-DROPBOX_TIMEOUT = int(os.environ.get("DROPBOX_TIMEOUT", 100))
-DROPBOX_WRITE_MODE = 'add'
+# Cloudinary config
+cloudinary.config( 
+  cloud_name = os.environ.get("CLOUD_NAME"), 
+  api_key = os.environ.get("API_KEY"), 
+  api_secret = os.environ.get("API_SECRET") 
+)

@@ -11,7 +11,7 @@
         <h2>share your quality wallpapers and get quality wallpapers of others.</h2>
         <div class="d-flex">
           {% if user.is_authenticated %}
-          <a href="#about" class="btn-get-started scrollto">upload</a>
+          <a href="#upload" class="btn-get-started scrollto" data-bs-toggle="modal" data-bs-target="#upload">upload</a>
           {% else %}
           <a href="/accounts" class="btn-get-started scrollto">sign in</a>
           {% endif %}
@@ -22,11 +22,47 @@
       </div>
     </div>
   </div>
-
 </section>
 
-<main id="main">
+<!-- Upload Modal -->
+<div class="modal fade" id="upload" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">upload</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form action="/" method="post" enctype="multipart/form-data">
+          {% csrf_token  %}
+          <div class="form-floating mt-3">
+            <textarea class="form-control" name="title" placeholder="Put your wallpaper title here" id="title"></textarea>
+            <label for="floatingTextarea">Title</label>
+          </div>
+          <div class="form-floating mt-3">
+            <textarea class="form-control" name="description" placeholder="Put your wallpaper description here" id="description" style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Description</label>
+          </div>
+          <div class="form-floating mt-3">
+            <textarea class="form-control" name="tags" placeholder="Put your wallpaper tags here" id="tags"></textarea>
+            <label for="floatingTextarea">Tags</label>
+          </div>
+          <div class="mt-3">
+            <label for="formFileLg" class="form-label">Choose your wallpaper</label>
+            <input class="form-control form-control-lg" name="image" type="file">
+          </div>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="submit" name="upload" formmethod="post" value="upload" class="btn btn-primary"/>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
 
+<main id="main">
   <section id="search">
     <div class="container">
       <div class="search-x">
