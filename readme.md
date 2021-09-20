@@ -1,6 +1,8 @@
 # wallsDox
 
-Is platform to share high quality wallpapers for various platforms.
+[![wallsdox](https://telegra.ph/file/49891617570e242073b9a.jpg)](http://wallsdox.meanii.codes)
+
+*Is platform to share high quality wallpapers for various platforms.*
 
 ## Configuration
 
